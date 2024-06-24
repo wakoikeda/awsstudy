@@ -13,14 +13,20 @@ class Post extends Model
     protected $fillable = [
     'title',
     'body',
+    'category_id'
 ];
 
 
 /* @param int $limitPerPage
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginateByLimit($limitPerPage = 10)
+    function getPaginateByLimit(int $limit_count = 5)
     {
-        return $this->orderBy('created_at', 'desc')->paginate($limitPerPage);
+        return $this::with('category')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
