@@ -5,9 +5,12 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
-    <!-- body内だけを表示しています。 -->
+    
 <body>
+    <x-app-layout>
+    <x-slot name="header">
     <h1 class="title">Blog</h1>
+    </x-slot>
     <div class="content">
         <form action="/posts/{{ $post->id }}" method="POST">
             @csrf
@@ -24,4 +27,5 @@
         </form>
     </div>
 </body>
+</x-app-layout>
 </html>
